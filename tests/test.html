@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roulette Application Tests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .test-controls {
+            margin: 20px 0;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .success {
+            color: green;
+        }
+        .failure {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Roulette Application Tests</h1>
+    
+    <div class="test-controls">
+        <button id="run-tests">Run Tests</button>
+    </div>
+    
+    <div class="results" id="test-results">
+        <p>Test results will appear here...</p>
+    </div>
+    
+    <script>
+        // Override console.log and console.assert to display in the results div
+        const resultsDiv = document.getElementById('test-results');
+        const originalLog = console.log;
+        const originalAssert = console.assert;
+        
+        console.log = function(message) {
+            originalLog.apply(console, arguments);
+            const p = document.createElement('p');
+            p.textContent = message;
+            p.className = 'success';
+            resultsDiv.appendChild(p);
+        };
+        
+        console.assert = function(condition, message) {
+            if (!condition) {
+                originalAssert.apply(console, arguments);
+                const p = document.createElement('p');
+                p.textContent = `ASSERTION FAILED: ${message}`;
+                p.className = 'failure';
+                resultsDiv.appendChild(p);
+            }
+        };
+        
+        // Set up the run tests button
+        document.getElementById('run-tests').addEventListener('click', function() {
+            resultsDiv.innerHTML = '';
+            window.runTests = true;
+            testRouletteStorage();
+        });
+    </script>
+    
+    <!-- Include the application scripts -->
+    <script src="../js/storage.js"></script>
+    
+    <!-- Include the test scripts -->
+    <script src="test.js"></script>
+</body>
+</html>

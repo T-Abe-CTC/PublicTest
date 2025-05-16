@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ルーレットゲーム</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ルーレットゲーム</h1>
+        
+        <div class="roulette-section">
+            <div class="roulette-container">
+                <div class="roulette" id="roulette">
+                    <!-- Names will be added here dynamically -->
+                </div>
+                <div class="needle"></div>
+            </div>
+            
+            <button id="spin-button" class="button">回転開始</button>
+        </div>
+        
+        <div class="names-section">
+            <h2>名前の管理</h2>
+            <div class="name-input-container">
+                <input type="text" id="name-input" placeholder="名前を入力">
+                <button id="add-name-button" class="button">追加</button>
+            </div>
+            
+            <div class="names-list-container">
+                <h3>登録された名前</h3>
+                <ul id="names-list">
+                    <!-- Names will be listed here -->
+                </ul>
+            </div>
+        </div>
+        
+        <div class="history-section">
+            <h2>履歴</h2>
+            <ul id="history-list">
+                <!-- History will be listed here -->
+            </ul>
+        </div>
+    </div>
+    
+    <script src="js/storage.js"></script>
+    <script src="js/roulette.js"></script>
+</body>
+</html>
